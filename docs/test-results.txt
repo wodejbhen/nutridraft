@@ -1,0 +1,27 @@
+test_bad_nutrient_unit (test_core.CoreTests.test_bad_nutrient_unit) ... ok
+test_bad_url (test_core.CoreTests.test_bad_url) ... ok
+test_boolean_rejected (test_core.CoreTests.test_boolean_rejected) ... ok
+test_cli_bad_json (test_core.CoreTests.test_cli_bad_json) ... ok
+test_cli_outputs_and_refuses_overwrite (test_core.CoreTests.test_cli_outputs_and_refuses_overwrite) ... ok
+test_credentials_url (test_core.CoreTests.test_credentials_url) ... ok
+test_cross_mass_volume_rejected (test_core.CoreTests.test_cross_mass_volume_rejected) ... ok
+test_different_basis (test_core.CoreTests.test_different_basis) ... ok
+test_duplicate_evidence (test_core.CoreTests.test_duplicate_evidence) ... ok
+test_duplicate_name (test_core.CoreTests.test_duplicate_name) ... ok
+test_evidence_claim_is_scanned (test_core.CoreTests.test_evidence_claim_is_scanned) ... ok
+test_inf_rejected (test_core.CoreTests.test_inf_rejected) ... ok
+test_liquids (test_core.CoreTests.test_liquids) ... ok
+test_malformed_root (test_core.CoreTests.test_malformed_root) ... ok
+test_missing_evidence_warns (test_core.CoreTests.test_missing_evidence_warns) ... ok
+test_nan_rejected (test_core.CoreTests.test_nan_rejected) ... ok
+test_negative_rejected (test_core.CoreTests.test_negative_rejected) ... ok
+test_render_safe (test_core.CoreTests.test_render_safe) ... ok
+test_risk_scan (test_core.CoreTests.test_risk_scan) ... ok
+test_serving_calculation (test_core.CoreTests.test_serving_calculation) ... ok
+test_zero_basis_rejected (test_core.CoreTests.test_zero_basis_rejected) ... ok
+test_zero_nutrient (test_core.CoreTests.test_zero_nutrient) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.133s
+
+OK

@@ -1,0 +1,19 @@
+{
+  "topic": "合成演示：一份30克的食品营养标签如何换算",
+  "serving_size": 30,
+  "serving_unit": "g",
+  "nutrients": [
+    {"name": "能量", "amount": 1600, "unit": "kJ", "basis_amount": 100, "basis_unit": "g"},
+    {"name": "蛋白质", "amount": 12, "unit": "g", "basis_amount": 100, "basis_unit": "g"},
+    {"name": "钠", "amount": 280, "unit": "mg", "basis_amount": 100, "basis_unit": "g"}
+  ],
+  "evidence": [
+    {
+      "id": "FDA-serving",
+      "claim": "FDA的美国营养标签科普说明：标签的每份量并不等于建议摄入量；阅读营养数字需要结合份量。这里不引用其DV阈值，也不将美国规定当作中国标准。",
+      "title": "FDA — How to Understand and Use the Nutrition Facts Label",
+      "url": "https://www.fda.gov/food/nutrition-facts-label/how-understand-and-use-nutrition-facts-label"
+    }
+  ],
+  "draft_text": "这组数字是合成教学示例，不对应真实品牌或产品，不含真实用户数据。"
+}
