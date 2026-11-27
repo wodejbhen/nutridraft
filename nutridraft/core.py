@@ -10,6 +10,21 @@ RULES = (
     ('restriction', r'断食|不吃饭|暴瘦|一周瘦', '涉及极端减重或限制性饮食，需人工审阅。'),
 )
 
+MAX_DECIMAL_PRECISION = 4096
+
+
+def _ratio_precision(amount, factor, basis):
+    if amount.is_zero():
+        return 60
+    # Bound the integer digits of amount * factor / basis and preserve enough
+    # guard digits to round the displayed result to three decimal places.
+    adjusted_bound = amount.adjusted() + factor.adjusted() - basis.adjusted() + 1
+    product_digits = len(amount.as_tuple().digits) + len(factor.as_tuple().digits)
+    precision = max(60, adjusted_bound + 10, product_digits + 10)
+    if precision > MAX_DECIMAL_PRECISION:
+        raise ValueError('换算所需精度超过4096位；请核对营养数值和计量基准')
+    return precision
+
 
 def text(value, field):
     if not isinstance(value, str) or not value.strip() or len(value) > 10000:
@@ -31,7 +46,9 @@ def number(value, field, positive=False):
 
 def formatted(n):
     with localcontext() as ctx:
-        ctx.prec = 60
+        ctx.prec = max(ctx.prec, 60, n.adjusted() + 4, len(n.as_tuple().digits) + 3)
+        if ctx.prec > MAX_DECIMAL_PRECISION:
+            raise ValueError('换算所需精度超过4096位；请核对营养数值和计量基准')
         return format(n.quantize(Decimal('0.001')), 'f').rstrip('0').rstrip('.') or '0'
 
 
@@ -72,6 +89,8 @@ def analyze(data):
             unit = item.get('unit')
             if unit not in ('g', 'mg', 'µg', 'kJ', 'kcal'):
                 raise ValueError('营养量单位只接受g/mg/µg/kJ/kcal，不自动换算')
+            ctx.prec = max(ctx.prec, _ratio_precision(amount, Decimal(100), basis),
+                           _ratio_precision(amount, serving, basis))
             rows.append({'name': name, 'unit': unit, 'input_amount': str(amount),
                          'input_basis': str(basis), 'basis_unit': base_unit,
                          'per_100': formatted(amount * 100 / basis),
