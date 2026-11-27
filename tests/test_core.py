@@ -1,5 +1,6 @@
 import copy
 import json
+from decimal import Decimal
 from pathlib import Path
 import subprocess
 import sys
@@ -27,6 +28,18 @@ class CoreTests(unittest.TestCase):
     def test_different_basis(self):
         self.data['nutrients'][0]['basis_amount'] = 50
         self.assertEqual(analyze(self.data)['nutrients'][0]['per_100'], '3200')
+
+    def test_tiny_positive_basis_keeps_large_result(self):
+        self.data['serving_size'] = 1
+        self.data['nutrients'][0].update(amount=1, basis_amount=1e-100)
+        row = analyze(self.data)['nutrients'][0]
+        self.assertEqual(row['per_100'], '1' + '0' * 102)
+        self.assertEqual(row['per_serving'], '1' + '0' * 100)
+
+    def test_unreasonably_large_result_precision_is_rejected(self):
+        self.data['nutrients'][0]['basis_amount'] = Decimal('1e-5000')
+        with self.assertRaisesRegex(ValueError, '4096位'):
+            analyze(self.data)
 
     def test_liquids(self):
         self.data['serving_unit'] = 'ml'
