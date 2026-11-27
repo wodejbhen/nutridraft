@@ -18,10 +18,12 @@ test_negative_rejected (test_core.CoreTests.test_negative_rejected) ... ok
 test_render_safe (test_core.CoreTests.test_render_safe) ... ok
 test_risk_scan (test_core.CoreTests.test_risk_scan) ... ok
 test_serving_calculation (test_core.CoreTests.test_serving_calculation) ... ok
+test_tiny_positive_basis_keeps_large_result (test_core.CoreTests.test_tiny_positive_basis_keeps_large_result) ... ok
+test_unreasonably_large_result_precision_is_rejected (test_core.CoreTests.test_unreasonably_large_result_precision_is_rejected) ... ok
 test_zero_basis_rejected (test_core.CoreTests.test_zero_basis_rejected) ... ok
 test_zero_nutrient (test_core.CoreTests.test_zero_nutrient) ... ok
 
 ----------------------------------------------------------------------
-Ran 22 tests in 0.133s
+Ran 24 tests in 0.165s
 
 OK
